@@ -42,3 +42,10 @@
   - Intel C++ Compiler
   - Clang
   - ...
+
+### IDE (Integrated Development Environment)
+
+- **IDE** = môi trường phát triển tích hợp — phần mềm viết code **có sẵn trình biên dịch bên trong**.
+- IDE dùng trong môn: **Code::Blocks**
+- Video hướng dẫn cài đặt: https://youtu.be/FVJHK9NLh1Q
+- Video xử lý **lỗi tạo Project không chạy được**: https://youtu.be/03bIbRWvQik
