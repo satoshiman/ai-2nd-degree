@@ -5,3 +5,7 @@
 - **Số tín chỉ**: 4
 - **Lịch học**: Thứ 6, 18h15 – 22h00
 - **Thời gian**: 30/10/2026 – 01/01/2027
+
+## Tài liệu tham khảo
+
+- Bài giảng online: https://www.youtube.com/watch?v=fM0iXXrTGtg
