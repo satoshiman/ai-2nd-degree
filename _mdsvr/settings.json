@@ -1,7 +1,7 @@
 {
   "$schema": "https://mdsvr.js.org/schema/v2.json",
   "site": {
-    "title": "AI Văn bằng 2",
+    "title": "VB2 UIT Notes",
     "description": "Ghi chú chương trình học AI văn bằng 2",
     "baseUrl": "https://satoshiman.github.io",
     "language": "vi"
