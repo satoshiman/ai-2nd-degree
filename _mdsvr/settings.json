@@ -32,6 +32,21 @@
   "mdx": {
     "enabled": true
   },
+  "files": {
+    "extensions": {
+      "hidden": [
+        "_mdsvr",
+        "settings.json",
+        ".git",
+        ".gitignore",
+        "node_modules",
+        ".DS_Store",
+        "AGENTS.md",
+        "package.json",
+        "package-lock.json"
+      ]
+    }
+  },
   "seo": {
     "og": {
       "enabled": true

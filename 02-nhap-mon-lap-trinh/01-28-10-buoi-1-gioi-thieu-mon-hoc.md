@@ -49,3 +49,17 @@
 - IDE dùng trong môn: **Code::Blocks**
 - Video hướng dẫn cài đặt: https://youtu.be/FVJHK9NLh1Q
 - Video xử lý **lỗi tạo Project không chạy được**: https://youtu.be/03bIbRWvQik
+
+### Chương trình C++ đầu tiên — Hello World
+
+```cpp
+#include <stdio.h>
+using namespace std;
+
+int main()
+{
+    printf("Hello World");
+
+    return 0;
+}
+```
