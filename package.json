@@ -2,8 +2,8 @@
     "name": "ai-2nd-degree",
     "version": "1.0.0",
     "scripts": {
-        "validate": "npx mdsvr@2.6.0 . --validate-md",
-        "export": "npx mdsvr@2.6.0 . --export",
+        "validate": "npx mdsvr@2.7.0 . --validate-md",
+        "export": "npx mdsvr@2.7.0 . --export",
         "postexport": "node _scripts/fix-basepath.mjs",
         "deploy": "npm run export && echo 'Site exported to _html/public. Push to main to deploy via GitHub Pages.'"
     }
