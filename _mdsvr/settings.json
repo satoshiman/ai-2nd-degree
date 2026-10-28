@@ -1,0 +1,44 @@
+{
+  "$schema": "https://mdsvr.js.org/schema/v2.json",
+  "site": {
+    "title": "AI Văn bằng 2",
+    "description": "Ghi chú chương trình học AI văn bằng 2",
+    "baseUrl": "https://satoshiman.github.io",
+    "language": "vi"
+  },
+  "appearance": {
+    "defaultTheme": "system",
+    "allowThemeToggle": true,
+    "accentColor": "#0969da",
+    "codeTheme": {
+      "light": "github",
+      "dark": "github-dark"
+    }
+  },
+  "navigation": {
+    "sidebar": {
+      "enabled": true,
+      "autoGenerate": true,
+      "depth": 2,
+      "docsOnly": true,
+      "collapsible": true,
+      "defaultOpen": false
+    },
+    "tocEnabled": true
+  },
+  "search": {
+    "enabled": true
+  },
+  "mdx": {
+    "enabled": true
+  },
+  "seo": {
+    "og": {
+      "enabled": true
+    }
+  },
+  "generate": {
+    "basePath": "/ai-2nd-degree",
+    "outputDir": "_html/public"
+  }
+}

@@ -1,0 +1,9 @@
+{
+    "name": "ai-2nd-degree",
+    "version": "1.0.0",
+    "scripts": {
+        "validate": "npx mdsvr@2.6.0 . --validate-md",
+        "export": "npx mdsvr@2.6.0 . --export",
+        "deploy": "npm run export && echo 'Site exported to _html/public. Push to main to deploy via GitHub Pages.'"
+    }
+}
