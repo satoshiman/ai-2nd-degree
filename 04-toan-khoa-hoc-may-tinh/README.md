@@ -9,3 +9,5 @@
 ## Tài liệu tham khảo
 
 - Bài giảng online: https://www.youtube.com/watch?v=fM0iXXrTGtg
+- Trang môn học trên elearning: https://elearning.citd.edu.vn/course/view.php?id=1997
+- Tài liệu xem thêm: https://machinelearningcoban.com

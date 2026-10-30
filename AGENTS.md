@@ -51,6 +51,8 @@ ai-2nd-degree/
 
 - Ghi chú bằng **tiếng Việt**, dùng Markdown.
 - Ngôn ngữ trong giao tiếp với người dùng: tiếng Việt.
+- Thuật ngữ kỹ thuật: ghi dạng `Tiếng Việt (English)` — vd: `Học máy (Machine Learning)`, `Lan truyền ngược (Backpropagation)`. Từ thông dụng viết luôn tiếng Anh — vd: `linear regression`, `gradient descent`.
+- **Không** tự tạo quiz (` ```quiz `) trong file buổi học — chỉ tạo khi người dùng yêu cầu.
 
 ## Format Markdown mdsvr hỗ trợ
 
