@@ -460,6 +460,7 @@ Giải thích từng thành phần:
 
 > [!WARNING]
 > Ký hiệu $g \approx f$ rất quan trọng: ta **không bao giờ đòi** $g = f$, chỉ cần $g$ *đủ gần* $f$ trên dữ liệu chưa thấy. Đây chính là tinh thần "giải thuật xấp xỉ" trong CLO 3 của môn học.
+
 #### Ký hiệu dùng trong môn học (Notations)
 
 | Ký hiệu | Ý nghĩa |
@@ -482,6 +483,7 @@ Giải thích từng thành phần:
 
 > [!NOTE]
 > Quy ước quan trọng cần nhớ: **chữ thường đậm = vector, chữ hoa đậm = ma trận, chữ thường = số vô hướng, chữ hoa calligraphy** ($\mathcal{X}, \mathcal{D}, \mathcal{H}$) **= tập hợp**.
+
 #### Ví dụ: duyệt thẻ tín dụng (Credit Approval)
 
 **Bài toán**: ngân hàng nhận *hàng nghìn* đơn đăng ký thẻ tín dụng mỗi ngày → muốn **tự động hóa** việc đánh giá: approve hay reject?
@@ -492,12 +494,198 @@ Một đơn đăng ký (đầu vào $x$) gồm các thông tin:
 |---|---|
 | Age — Tuổi | 23 years |
 | Gender — Giới tính | male |
-| Annual salary — Thu nhập/năm | $30,000 |
+| Annual salary — Thu nhập/năm | <span>$</span>30,000 |
 | Year of residence — Số năm cư trú | 1 year |
 | Years in job — Thâm niên công việc | 1 year |
-| Current debt — Nợ hiện tại | $15,000 |
+| Current debt — Nợ hiện tại | <span>$</span>15,000 |
 
 → Câu hỏi: **Approve credit?** (đầu ra $y$ = duyệt / không duyệt)
 
 > [!NOTE]
 > Đây là bài toán **phân loại nhị phân**: $x$ = vector đặc trưng của người đăng ký, $y \in \{\text{approve}, \text{reject}\}$. Quy luật thật $f$ = "tiêu chuẩn duyệt lý tưởng" mà ngân hàng không viết thành luật được — phải **học từ hồ sơ đơn cũ** (kinh nghiệm $E$).
+
+## Tự kiểm tra
+
+```quiz
+{
+  "title": "Buổi 1 — Ôn nhanh",
+  "mode": "exam",
+  "questions": [
+    {
+      "type": "single",
+      "question": "Theo định nghĩa của Tom Mitchell, một chương trình máy tính được gọi là **học** khi nào?",
+      "options": [
+        "Khi hiệu năng $P$ trên tác vụ $T$ được cải thiện nhờ kinh nghiệm $E$",
+        "Khi nó ghi nhớ được toàn bộ dữ liệu đã nạp vào",
+        "Khi người lập trình viết đủ nhiều quy luật cho nó"
+      ],
+      "answer": 0,
+      "explanation": "Định nghĩa Mitchell: *improve on task $T$, w.r.t. performance metric $P$, based on experience $E$*. ML khác lập trình truyền thống ở chỗ máy **tự học quy luật** chứ không được viết sẵn."
+    },
+    {
+      "type": "single",
+      "question": "Trong bài toán lọc email spam, **kinh nghiệm $E$** là gì?",
+      "options": [
+        "Tỷ lệ % email được phân loại đúng",
+        "Việc phán đoán một email là spam hay normal",
+        "Tập email cũ, mỗi email đã có nhãn spam/normal"
+      ],
+      "answer": 2,
+      "explanation": "$E$ = dữ liệu kinh nghiệm nạp cho máy (tập email đã gán nhãn). Việc phân loại email là $T$; tỷ lệ phân loại đúng là $P$."
+    },
+    {
+      "type": "single",
+      "question": "Vì sao **accuracy** trở nên 'ảo' khi dữ liệu mất cân bằng (vd 99% normal, 1% spam)?",
+      "options": [
+        "Vì mô hình luôn đoán lớp đa số cũng đạt accuracy cao mà không học được gì",
+        "Vì accuracy không tính được khi hai lớp có số mẫu chênh lệch",
+        "Vì mô hình không thể hội tụ khi có quá ít mẫu minority"
+      ],
+      "answer": 0,
+      "explanation": "Mô hình đoán *normal* cho mọi email vẫn đạt 99% accuracy — con số cao nhưng vô nghĩa → phải dùng precision/recall/F1 và/hoặc cân bằng lại dữ liệu."
+    },
+    {
+      "type": "single",
+      "question": "Trong confusion matrix, **False Negative (FN)** là trường hợp nào?",
+      "options": [
+        "Đoán positive nhưng thực tế negative (báo động giả)",
+        "Đoán negative nhưng thực tế positive (bỏ sót)",
+        "Đoán negative và đúng là negative"
+      ],
+      "answer": 1,
+      "explanation": "FN = **bỏ sót**: mẫu thật positive bị mô hình đoán negative. Trường hợp đoán positive sai là FP (*báo động giả*)."
+    },
+    {
+      "type": "single",
+      "question": "Với bài toán phát hiện khối u trong ảnh y khoa, nên ưu tiên độ đo nào?",
+      "options": [
+        "Recall cao — tránh bỏ sót khối u thật",
+        "Precision cao — tránh báo động giả",
+        "Accuracy cao — đúng tổng thể là đủ"
+      ],
+      "answer": 0,
+      "explanation": "Bỏ sót khối u thật (FN) **nguy hiểm tính mạng**, còn báo nhầm (FP) chỉ tốn thêm xét nghiệm kiểm tra → tối đa hóa recall."
+    },
+    {
+      "type": "true-false",
+      "question": "Với spam filter, người ta thường ưu tiên **recall** hơn precision.",
+      "answer": false,
+      "explanation": "Ngược lại: gắn nhầm nhãn *spam* cho email quan trọng (FP) tệ hơn để lọt một email rác vào inbox (FN) → ưu tiên **precision**."
+    },
+    {
+      "type": "single",
+      "question": "Công thức nào là **precision**?",
+      "options": [
+        "`TP / (TP + FP)`",
+        "`TP / (TP + FN)`",
+        "`(TP + TN) / (TP + FP + FN + TN)`"
+      ],
+      "answer": 0,
+      "explanation": "Precision = trong các mẫu *đoán positive* thì bao nhiêu mẫu đúng → `TP/(TP+FP)`. `TP/(TP+FN)` là recall; công thức còn lại là accuracy."
+    },
+    {
+      "type": "true-false",
+      "question": "$F_1$ là trung bình cộng (arithmetic mean) của precision và recall.",
+      "answer": false,
+      "explanation": "$F_1$ là **trung bình điều hòa** (harmonic mean): $F_1 = 2 \\cdot \\frac{P \\cdot R}{P + R}$ — bị phạt nặng khi một trong hai độ đo quá thấp."
+    },
+    {
+      "type": "single",
+      "question": "Box dự đoán có IoU = 0.7 so với ground truth thì sao (theo quy ước phổ biến)?",
+      "options": [
+        "Dự đoán sai vì IoU < 1",
+        "Dự đoán được tính là đúng vì IoU ≥ 0.5",
+        "Hai box không giao nhau"
+      ],
+      "answer": 1,
+      "explanation": "IoU = diện tích giao / diện tích hợp; quy ước phổ biến: **IoU ≥ 0.5** là dự đoán đúng. IoU = 0 mới là hai box không giao nhau."
+    },
+    {
+      "type": "true-false",
+      "question": "Dữ liệu test có thể cho mô hình 'nhìn qua' một phần trong quá trình train, miễn là tỷ lệ nhỏ.",
+      "answer": false,
+      "explanation": "Đây là **data leakage** — test data tuyệt đối không được lộ vào lúc train, kể cả một phần, vì $P$ đo được sẽ 'ảo', không phản ánh khả năng thật."
+    },
+    {
+      "type": "single",
+      "question": "Mục tiêu chính của **embedding model** là gì?",
+      "options": [
+        "Nén dữ liệu để giảm dung lượng lưu trữ",
+        "Gán nhãn tự động cho dữ liệu chưa có nhãn",
+        "Chuyển dữ liệu thô thành vector sao cho dữ liệu giống nhau về ngữ nghĩa có vector gần nhau"
+      ],
+      "answer": 2,
+      "explanation": "Embedding = nhúng dữ liệu vào $\\mathbb{R}^d$ sao cho ngữ nghĩa tương tự → vector gần nhau — vd vec(chó) gần vec(mèo) hơn vec(bàn)."
+    },
+    {
+      "type": "single",
+      "question": "Trong machine learning, **'học'** nghĩa đen là gì?",
+      "options": [
+        "Ghi nhớ toàn bộ training data vào bộ nhớ",
+        "Tìm ra tham số của mô hình sao cho khớp dữ liệu (tối ưu tham số)",
+        "Viết ra các quy luật if–else từ dữ liệu"
+      ],
+      "answer": 1,
+      "explanation": "Học một mô hình = học các **tham số**. Vd với $f(x) = w \\cdot x + b$, 'học' là tìm $w$ và $b$ tốt nhất — tức đi từ dạng $y = ax + b$ đến hàm cụ thể $y = 2x + 5$."
+    },
+    {
+      "type": "multiple",
+      "question": "Học máy gồm những thành phần nào? (chọn tất cả)",
+      "options": [
+        "Tổng quát hóa (Generalization)",
+        "Dữ liệu (Data)",
+        "Mô hình (Model)",
+        "Thuật toán (Algorithm)",
+        "Ngôn ngữ lập trình (Programming language)"
+      ],
+      "answer": [0, 1, 2, 3],
+      "explanation": "4 thành phần: generalization (mục tiêu), data (kinh nghiệm $E$), model (giả định về dạng quy luật), algorithm (learning + inference). Ngôn ngữ lập trình chỉ là công cụ hiện thực, không phải thành phần khái niệm."
+    },
+    {
+      "type": "single",
+      "question": "**Hypothesis set** $\\mathcal{H}$ trong sơ đồ learning components là gì?",
+      "options": [
+        "Tập tất cả hàm ứng viên mà learning algorithm được phép chọn",
+        "Tập dữ liệu huấn luyện $\\mathcal{D}$",
+        "Hàm mục tiêu thật $f$ mà ta muốn xấp xỉ"
+      ],
+      "answer": 0,
+      "explanation": "$\\mathcal{H}$ = tập mọi hàm ứng viên (vd mọi đường thẳng $y = ax + b$); algorithm $\\mathcal{A}$ dùng $\\mathcal{D}$ chọn ra $g \\in \\mathcal{H}$ tốt nhất. **Chọn $\\mathcal{H}$ chính là chọn mô hình/giả định.**"
+    },
+    {
+      "type": "true-false",
+      "question": "Mục tiêu của quá trình học là tìm $g$ sao cho $g = f$ chính xác tuyệt đối.",
+      "answer": false,
+      "explanation": "Ta không bao giờ biết $f$ và chỉ cần $g \\approx f$ — đủ gần trên dữ liệu *chưa thấy*. Đây là tinh thần 'giải thuật xấp xỉ' trong CLO 3."
+    },
+    {
+      "type": "true-false",
+      "question": "Mô hình đạt 100% trên training data nhưng sai nhiều trên dữ liệu mới được gọi là **overfitting**.",
+      "answer": true,
+      "explanation": "Overfitting = 'học vẹt' — khớp tuyệt đối dữ liệu train nhưng **không tổng quát hóa** được sang trường hợp chưa từng thấy."
+    },
+    {
+      "type": "single",
+      "question": "Theo quy ước ký hiệu của môn học, $\\mathbf{w}$ (chữ thường, in đậm) biểu diễn đối tượng nào?",
+      "options": [
+        "Số vô hướng (scalar)",
+        "Vector cột (column vector)",
+        "Ma trận (matrix)"
+      ],
+      "answer": 1,
+      "explanation": "Quy ước: chữ thường = scalar, **chữ thường đậm** = vector, **chữ hoa đậm** ($\\mathbf{X}$) = ma trận, chữ hoa calligraphy ($\\mathcal{X}$) = tập hợp."
+    },
+    {
+      "type": "single",
+      "question": "**Learning algorithm** và **inference algorithm** khác nhau thế nào?",
+      "options": [
+        "Learning điều chỉnh tham số cho khớp training data; inference áp mô hình đã học lên $x$ mới để ra dự đoán",
+        "Learning chạy trên GPU còn inference chạy trên CPU",
+        "Learning dùng cho phân loại còn inference dùng cho hồi quy"
+      ],
+      "answer": 0,
+      "explanation": "Learning = *quá trình học* — tìm tham số (vd gradient descent); inference = lúc *dùng* mô hình — đưa $x$ mới qua mô hình đã học → ra $y$."
+    }
+  ]
+}
+```
