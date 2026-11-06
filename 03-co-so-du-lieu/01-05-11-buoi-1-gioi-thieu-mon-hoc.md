@@ -823,6 +823,36 @@ CSDL theo dõi các thông tin liên quan đến **nhân viên, phòng ban và �
 | 4. Khóa | MAPHG, MADA, MANV - khóa chính; TENPB, TENDA - khóa phụ (duy nhất); THAN_NHAN khóa = $\{MANV, TENTN\}$ |
 | 5. (min, max) | NV `LamViec` $(1,1)$ - PB $(1,n)$; NV `LaTruongPhong` $(0,1)$ - PB $(1,1)$; PB `ChuTri` $(0,n)$ - DA $(1,1)$; NV `PhanCong` $(0,n)$ - DA $(1,n)$; `QuanLyTrucTiep`: *được quản lý bởi* $(1,1)$ / *là người quản lý* $(0,n)$; TN `Co_than_nhan` $(1,1)$ - NV $(0,n)$ |
 
+**Lược đồ ER kết quả:**
+
+```mermaid
+flowchart TB
+    pb["PHONGBAN<br/>●MAPHG | TENPB(duy nhất) | DDIEM(đa trị)"]
+    da["DEAN<br/>●MADA | TENDA(duy nhất) | DDIEM_DA"]
+    nv["NHANVIEN<br/>●MANV | HONV | TENNV | NGSINH | DCHI | PHAI | LUONG"]
+    tn[["THAN_NHAN (yếu)<br/>◐TENTN | PHAI | NGSINH | QUANHE"]]
+
+    lv{"LamViec"}
+    tph{"LaTruongPhong<br/>(NG_NHANHCHUC)"}
+    ctr{"ChuTri"}
+    pc{"PhanCong<br/>(THGIAN)"}
+    qltt{"QuanLyTrucTiep"}
+    ctn{"Co_than_nhan"}
+
+    nv ---|"(1,1)"| lv
+    lv ---|"(1,n)"| pb
+    nv ---|"(0,1)"| tph
+    tph ---|"(1,1)"| pb
+    pb ---|"(0,n)"| ctr
+    ctr ---|"(1,1)"| da
+    nv ---|"(0,n)"| pc
+    pc ---|"(1,n)"| da
+    nv ---|"được quản lý bởi (1,1)"| qltt
+    qltt ---|"là người quản lý (0,n)"| nv
+    tn ---|"(1,1)"| ctn
+    ctn ---|"(0,n)"| nv
+```
+
 > [!NOTE]
 > - `LaTruongPhong` và `LamViec` là **2 quan hệ khác nhau** giữa cùng cặp NHANVIEN-PHONGBAN (trưởng phòng cũng là một nhân viên).
 > - `NG_NHANHCHUC` đặt trên `LaTruongPhong` - vì "ngày nhận chức" chỉ có nghĩa khi biết **ai làm trưởng phòng nào**.
@@ -872,6 +902,31 @@ Xây dựng mô hình ERD cho CSDL **quản lý giáo vụ** gồm các chức n
 | Mối quan hệ | `XepLop` (HV-LOP), `LopTruong` (HV-LOP - quan hệ **thứ 2** giữa cùng cặp thực thể), `PhanCong` (**ngôi 3**: GV-LOP-MH), `Thi` (**ngôi 3**: HV-MH-LANTHI) |
 | Thuộc tính quan hệ | `HOCKY`, `NAMHOC` trên `PhanCong`; `DIEMTHI` trên `Thi` |
 | Bản số | HV `XepLop` $(1,1)$, LOP $(0,n)$; LOP `LopTruong` $(1,1)$, HV $(0,1)$; `PhanCong` và `Thi` các phía $(0,n)$ |
+
+```mermaid
+flowchart TB
+    hv["HOCVIEN<br/>●MAHV | HOTEN | GIOITINH | NTNS"]
+    gv["GIAOVIEN<br/>●MAGV | HOTEN | GIOITINH"]
+    mh["MONHOC<br/>●MAMH | TENMH | TCLT | TCTH"]
+    lop["LOPHOC<br/>●MALOP | TENLOP | SISO"]
+    lt["LANTHI<br/>●LANTHI"]
+
+    xl{"XepLop"}
+    ltr{"LopTruong"}
+    pc{"PhanCong<br/>(HOCKY, NAMHOC)"}
+    thi{"Thi<br/>(DIEMTHI)"}
+
+    hv ---|"(1,1)"| xl
+    xl ---|"(0,n)"| lop
+    hv ---|"(0,1)"| ltr
+    ltr ---|"(1,1)"| lop
+    gv ---|"(0,n)"| pc
+    lop ---|"(0,n)"| pc
+    mh ---|"(0,n)"| pc
+    hv ---|"(0,n)"| thi
+    mh ---|"(0,n)"| thi
+    lt ---|"(0,n)"| thi
+```
 
 > [!NOTE]
 > - `XepLop` và `LopTruong` là **2 quan hệ riêng** giữa HOCVIEN-LOPHOC: lớp trưởng bản chất cũng là một học viên của lớp đó.
