@@ -691,13 +691,36 @@ flowchart LR
 
 #### Bản số (Relationship Cardinality)
 
-**Bản số** quy định mỗi thực thể tham gia vào mối quan hệ **tối thiểu và tối đa bao nhiêu lần** - ghi dưới dạng $(min, max)$ trên nhánh nối với tập thực thể.
+Cặp số $(min, max)$ được gọi là **bản số** (Cardinality) - quy định số lần **tối thiểu và tối đa** mà một thực thể tham gia vào một mối quan hệ, ghi trên nhánh nối với tập thực thể đó.
 
-- $min = 0$ → tham gia **tùy chọn** (partial participation) - thực thể có thể không tham gia quan hệ nào.
-- $min \geq 1$ → tham gia **bắt buộc** (total participation) - thực thể phải tham gia ít nhất 1 quan hệ.
-- $max = n$ → không giới hạn trên (nhiều).
+**Ý nghĩa của $min$** (vị trí thứ nhất - tính **bắt buộc** của sự tham gia):
 
-**Các ví dụ đọc bản số:**
+- $min = 0$ → tham gia **tùy chọn** (partial participation): thực thể có thể tham gia hoặc không tham gia vào mối quan hệ đều được (không bắt buộc).
+- $min \geq 1$ (thường là 1) → tham gia **bắt buộc** (total participation): thực thể bắt buộc phải tham gia vào mối quan hệ ít nhất một lần, không được phép đứng ngoài.
+
+**Ý nghĩa của $max$** (vị trí thứ hai - **giới hạn số lượng** mối kết hợp tối đa mà một thực thể có thể có):
+
+- $max = 1$ → thực thể chỉ kết hợp với **tối đa một** đối tượng ở phía bên kia.
+- $max = n$ (hoặc một số cụ thể như 2, 3...) → thực thể có thể kết hợp với **nhiều** đối tượng (không giới hạn số lượng trên).
+
+**Ví dụ đọc chi tiết:**
+
+`NHANVIEN (1,1) - LamViec - PHONGBAN (1,n)` (nhân viên thuộc phòng ban):
+
+- `NHANVIEN (1,1)`:
+  - $min = 1$: mỗi nhân viên **bắt buộc** phải thuộc về một phòng ban nào đó (không có nhân viên "vô phòng ban").
+  - $max = 1$: mỗi nhân viên chỉ thuộc **đúng một** phòng ban duy nhất tại một thời điểm.
+- `PHONGBAN (1,n)`:
+  - $min = 1$: mỗi phòng ban **bắt buộc** phải có ít nhất một nhân viên.
+  - $max = n$: một phòng ban có thể có **nhiều** nhân viên làm việc.
+
+`NHANVIEN (0,1) - LaTruongPhong - PHONGBAN (1,1)` (nhân viên làm trưởng phòng):
+
+- `NHANVIEN (0,1)`:
+  - $min = 0$: một nhân viên có thể **không** làm trưởng phòng nào cả (nhân viên bình thường).
+  - $max = 1$: nếu làm trưởng phòng, nhân viên đó chỉ làm trưởng phòng cho **tối đa 1** phòng ban.
+
+**Các ví dụ đọc nhanh bản số:**
 
 | Diễn giải ngữ nghĩa | Ký hiệu trên hình |
 |---|---|
