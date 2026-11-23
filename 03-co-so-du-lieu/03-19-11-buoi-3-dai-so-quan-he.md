@@ -461,7 +461,7 @@ Trong ví dụ trên, nếu đổi tên cột `PHONG` của NHANVIEN thành `MAP
 >
 > $$\pi_{NV.HOTEN,\ QL.HOTEN}\big(\rho_{NV}(NHANVIEN) \bowtie_{NV.\text{MA\_NQL}\,=\,QL.MANV} \rho_{QL}(NHANVIEN)\big)$$
 >
-> Trong SQL tương đương `... FROM NHANVIEN nv JOIN NHANVIEN ql ON nv.MA_NQL = ql.MANV`. Kỹ thuật $\rho$ đổi tên cũng dùng khi cần natural join mà 2 bên cột khác tên (vd đổi `PHONG` thành `MAPH`). Xem ví dụ chạy trên dữ liệu thật ở mục [các ví dụ trên lược đồ công ty](#các-ví-dụ-trên-lược-đồ-công-ty).
+> Trong SQL tương đương `... FROM NHANVIEN nv JOIN NHANVIEN ql ON nv.MA_NQL = ql.MANV`. Kỹ thuật $\rho$ đổi tên cũng dùng khi cần natural join mà 2 bên cột khác tên (vd đổi `PHONG` thành `MAPH`). Xem ví dụ chạy trên dữ liệu thật ở mục [các ví dụ trên lược đồ công ty](#cac-vi-du-tren-luoc-do-cong-ty).
 
 **Ví dụ - Câu 7:** Tìm họ tên các trưởng phòng của từng phòng?
 
