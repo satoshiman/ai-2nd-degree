@@ -289,7 +289,7 @@ flowchart LR
     C --> D["Nhãn: cat"]
 ```
 
-![Minh họa bài toán phân loại ảnh: ảnh mèo đầu vào ánh xạ tới nhãn "cat" trong tập nhãn rời rạc](/assets/image-classification-cat.png)
+![Minh họa bài toán phân loại ảnh: ảnh mèo đầu vào ánh xạ tới nhãn "cat" trong tập nhãn rời rạc](../assets/image-classification-cat.png)
 
 *Ảnh mèo đầu vào – output mong muốn là nhãn "cat". Ảnh mèo của Nikita, CC-BY 2.0.*
 
