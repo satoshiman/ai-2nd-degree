@@ -85,6 +85,14 @@ Các field tùy chọn khác: `seoTitle`, `image`, `imageAlt`, `author`, `dateMo
 - Link tới folder, không link tới `README` (`[Môn](./01-ai-intro)`).
 - Anchor `#...` phải khớp đúng heading hiện có.
 
+### Media (ảnh, file đính kèm)
+
+- Link media dùng **path tuyệt đối tính từ root workspace**: `![alt](/assets/ten-anh.png)`. KHÔNG dùng relative kiểu `../assets/` — dev mode render nguyên vào HTML, trang có trailing slash sẽ resolve sai và ảnh 404.
+- mdsvr xử lý `/assets/...` đúng ở cả hai môi trường: dev serve tại `localhost:PORT/assets/...`, export tự prepend `basePath` (`/ai-2nd-degree/assets/...`) cho GitHub Pages.
+- Ảnh dùng chung cho repo đặt trong `assets/` ở root; đặt tên file mô tả nội dung (vd `image-classification-cat.png`), không để `image.png`.
+- Mỗi ảnh có alt text tiếng Việt mô tả nội dung + caption nguồn/tác giả/license bên dưới (nếu lấy từ nguồn ngoài — ưu tiên Wikimedia Commons license tự do).
+- Có thể dùng URL ngoài trực tiếp cho ảnh Wikimedia Commons; ảnh do người dùng cung cấp thì lưu vào `assets/` rồi link relative.
+
 ### Callout
 
 Dùng GitHub-style (mdsvr render thành khối đẹp):
@@ -108,6 +116,15 @@ Không dùng `:::note`, `:::warning`, `:::tip`, `:::danger`.
 - Không hardcode màu/style; dùng emoji để thể hiện ý nghĩa ngữ nghĩa.
 - 19 loại diagram hỗ trợ: `flowchart`, `sequenceDiagram`, `classDiagram`, `stateDiagram-v2`, `erDiagram`, `gantt`, `journey`, `gitGraph`, `mindmap`, `pie`, `timeline`, `kanban`, `quadrantChart`, `sankey-beta`, `xychart-beta`, `block-beta`, `architecture-beta`, `packet-beta`, `requirementDiagram`. Chọn loại phù hợp, không mặc định `flowchart`.
 
+### Hình ảnh
+
+- Khi Mermaid không biểu diễn được nội dung (hình minh họa khái niệm, hình học, ảnh chụp thực tế...), tìm hình trên **Wikimedia Commons**: license tự do, cho phép hotlink trực tiếp.
+- Quy trình: `web_search` tìm file trên `commons.wikimedia.org` → `webfetch` trang file để lấy URL ảnh trực tiếp trên `upload.wikimedia.org` → nhúng vào markdown.
+- Cú pháp: `![Mô tả hình bằng tiếng Việt](https://upload.wikimedia.org/...)`. Alt text bắt buộc, mô tả nội dung hình.
+- Ngay dưới hình thêm caption in nghiêng ghi nguồn + tác giả + license, vd: `*Nguồn: [tên tác giả](link trang file trên Commons), CC BY-SA 4.0*`.
+- Ưu tiên SVG hoặc PNG; dùng URL thumb dạng `upload.wikimedia.org/thumb/.../NNNpx-tên-file` để giới hạn kích thước hiển thị.
+- Không nhúng ảnh từ trang không rõ license; không hotlink trực tiếp kết quả Google Images hay trang bản quyền.
+
 ### Toán (LaTeX)
 
 - Inline: `$E = mc^2$` — không có khoảng trắng sát dấu `$` (`$ x $` không render).
@@ -115,6 +132,13 @@ Không dùng `:::note`, `:::warning`, `:::tip`, `:::danger`.
 - Block: `$$...$$` hoặc code block ` ```math ` (bên trong ` ```math ` không cần `$$`).
 - Render qua KaTeX — chỉ dùng math-mode commands (`\frac`, `\sqrt`, `\sum`, `\begin{pmatrix}`, Greek letters...).
 - `$` literal: escape `\$` trong math, hoặc `<span>$</span>` ngoài math.
+
+### Bảng (Table)
+
+- Số ô trong header và mỗi hàng body phải **khớp đúng** số cột của dòng separator `|---|---|` – lệch thì bảng không render (ra text thường) hoặc lệch cột.
+- Ô góc trái để trống thì viết `| |` (một pipe, ô trống), không viết `||` hay `|| |`.
+- **Không** viết `|` trần bên trong `$...$` trong ô bảng – ký tự `|` bị parser tách thành cell delimiter. Dùng `\vert`, `\lvert`, `\rvert` (gạch đơn) và `\Vert`, `\lVert`, `\rVert` (gạch kép cho norm): `\vert f(x)\vert ^p`, `\Vert \mathbf{x}\Vert _2`.
+- Verify bảng render đúng: `npm run export` rồi grep `<table>` trong `_html/public/.../index.html`.
 
 ### Quiz
 
@@ -127,5 +151,6 @@ Không dùng `:::note`, `:::warning`, `:::tip`, `:::danger`.
   - `self-check` — `answer` = chuỗi markdown (đáp án mẫu), học viên tự chấm.
 - `explanation` (tùy chọn): giải thích sau khi chấm — viết lý do đúng/sai, không chỉ đáp án.
 - Inline markdown hoạt động trong `question`, `options`, `explanation`, `answer` của `self-check`; raw HTML bị strip.
+- Quiz **không render LaTeX** (`$...$` hiện nguyên văn): viết công thức bằng ký hiệu Unicode, vd `‖x‖₁`, `√26`, `x ≤ y`, `θ`, `ℝ²`, `xᵀAy`, `L∞`.
 - Distractor phải hợp lý (misconception phổ biến); không dùng "none of the above".
 - Đáp án nằm trong source — chỉ dùng cho tự học, không cho kiểm tra bắt buộc.
