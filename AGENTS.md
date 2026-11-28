@@ -87,8 +87,9 @@ Các field tùy chọn khác: `seoTitle`, `image`, `imageAlt`, `author`, `dateMo
 
 ### Media (ảnh, file đính kèm)
 
-- Link media dùng **path relative** từ file `.md` tới `assets/` ở root: file trong folder môn dùng `![alt](../assets/ten-anh.png)`. KHÔNG dùng path tuyệt đối `/assets/...`: `npm run validate` (bước đầu của GitHub Action) báo lỗi `absolute-path` và làm fail deploy.
-- Export tự rewrite `../assets/...` thành `/ai-2nd-degree/assets/...` nên GitHub Pages hiển thị đúng. Hạn chế đã biết: dev mode (`mdsvr .`) giữ nguyên path relative, trang mở qua sidebar có trailing slash nên ảnh local bị 404 khi xem dev (chỉ ảnh hưởng xem local). Ưu tiên export mode; theo dõi fix tại [mdsvr#53](https://github.com/satoshiman/mdsvr/issues/53).
+- Link media dùng **path relative** từ file `.md` tới `assets/` ở root: file trong folder môn dùng `![alt](../assets/ten-anh.png)`. Relative path hoạt động đúng trong cả dev mode, export và `npm run validate` (từ mdsvr 2.8.1, fix [mdsvr#53](https://github.com/satoshiman/mdsvr/issues/53)).
+- Export tự rewrite `../assets/...` thành `/ai-2nd-degree/assets/...` nên GitHub Pages hiển thị đúng.
+- Path tuyệt đối `/assets/...` từ 2.8.1 cũng pass validate (target phải tồn tại trong docs root, thiếu báo `missing-asset`), nhưng repo đang dùng relative - giữ consistent.
 - Ảnh dùng chung cho repo đặt trong `assets/` ở root; đặt tên file mô tả nội dung (vd `image-classification-cat.png`), không để `image.png`.
 - Mỗi ảnh có alt text tiếng Việt mô tả nội dung + caption nguồn/tác giả/license bên dưới (nếu lấy từ nguồn ngoài — ưu tiên Wikimedia Commons license tự do).
 - Có thể dùng URL ngoài trực tiếp cho ảnh Wikimedia Commons; ảnh do người dùng cung cấp thì lưu vào `assets/` rồi link relative.
@@ -151,6 +152,6 @@ Không dùng `:::note`, `:::warning`, `:::tip`, `:::danger`.
   - `self-check` — `answer` = chuỗi markdown (đáp án mẫu), học viên tự chấm.
 - `explanation` (tùy chọn): giải thích sau khi chấm — viết lý do đúng/sai, không chỉ đáp án.
 - Inline markdown hoạt động trong `question`, `options`, `explanation`, `answer` của `self-check`; raw HTML bị strip.
-- Quiz **không render LaTeX** (`$...$` hiện nguyên văn): viết công thức bằng ký hiệu Unicode, vd `‖x‖₁`, `√26`, `x ≤ y`, `θ`, `ℝ²`, `xᵀAy`, `L∞`.
+- Quiz **render LaTeX** `$...$` trong `question`, `options`, `explanation` và `answer` của `self-check` (từ mdsvr 2.8.1) - viết công thức LaTeX như body. Lưu ý JSON strict nên phải escape backslash: `\\mathbf`, `\\sqrt`, `\\|`, `\\langle`...
 - Distractor phải hợp lý (misconception phổ biến); không dùng "none of the above".
 - Đáp án nằm trong source — chỉ dùng cho tự học, không cho kiểm tra bắt buộc.

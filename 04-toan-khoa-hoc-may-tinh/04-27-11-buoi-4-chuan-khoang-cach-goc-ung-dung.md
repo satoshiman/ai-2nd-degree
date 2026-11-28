@@ -548,91 +548,91 @@ knn_idx = np.argsort(d2, axis=1)[:, :k]   # k láng giềng gần nhất của m
   "questions": [
     {
       "type": "single",
-      "question": "Hàm nào sau đây là một **chuẩn** trên ℝ²?",
+      "question": "Hàm nào sau đây là một **chuẩn** trên $\\mathbb{R}^2$?",
       "options": [
-        "f(x) = x₁² + x₂²",
-        "f(x) = |x₁|",
-        "f(x) = max(|x₁|, |x₂|)",
-        "f(x) = |x₁| + |x₂| + 1"
+        "$f(\\mathbf{x}) = x_1^2 + x_2^2$",
+        "$f(\\mathbf{x}) = |x_1|$",
+        "$f(\\mathbf{x}) = \\max(|x_1|, |x_2|)$",
+        "$f(\\mathbf{x}) = |x_1| + |x_2| + 1$"
       ],
       "answer": 2,
-      "explanation": "max(|x₁|, |x₂|) là chuẩn L∞. x₁² + x₂² cho f(2x) = 4·f(x) nên vi phạm tính thuần nhất; |x₁| bằng 0 tại (0, 1) ≠ θ nên vi phạm xác định dương; hằng số +1 làm f(θ) = 1 ≠ 0."
+      "explanation": "$\\max(|x_1|, |x_2|)$ là chuẩn $L_\\infty$. $x_1^2 + x_2^2$ cho $f(2\\mathbf{x}) = 4f(\\mathbf{x})$ nên vi phạm tính thuần nhất; $|x_1|$ bằng 0 tại $(0, 1) \\neq \\theta$ nên vi phạm xác định dương; hằng số $+1$ làm $f(\\theta) = 1 \\neq 0$."
     },
     {
       "type": "single",
-      "question": "Cho x = (3, −4, 1). Bộ giá trị (‖x‖₁, ‖x‖₂, ‖x‖∞) đúng là:",
+      "question": "Cho $\\mathbf{x} = (3, -4, 1)$. Bộ giá trị $(\\|\\mathbf{x}\\|_1, \\|\\mathbf{x}\\|_2, \\|\\mathbf{x}\\|_\\infty)$ đúng là:",
       "options": [
-        "(8, √26, 4)",
-        "(0, √26, 3)",
-        "(8, 26, 4)",
-        "(8, 5, 4)"
+        "$(8, \\sqrt{26}, 4)$",
+        "$(0, \\sqrt{26}, 3)$",
+        "$(8, 26, 4)$",
+        "$(8, 5, 4)$"
       ],
       "answer": 0,
-      "explanation": "L1 = 3 + 4 + 1 = 8, L2 = √(9 + 16 + 1) = √26, L∞ = max = 4. Ra 0 là quên trị tuyệt đối, ra 26 là quên căn, ra 5 là bỏ sót thành phần thứ ba. Tự kiểm tra: ‖x‖∞ ≤ ‖x‖₂ ≤ ‖x‖₁."
+      "explanation": "$L_1 = 3 + 4 + 1 = 8$, $L_2 = \\sqrt{9 + 16 + 1} = \\sqrt{26}$, $L_\\infty = 4$. Ra 0 là quên trị tuyệt đối, ra 26 là quên căn, ra 5 là bỏ sót thành phần thứ ba. Tự kiểm tra: $\\|\\mathbf{x}\\|_\\infty \\leq \\|\\mathbf{x}\\|_2 \\leq \\|\\mathbf{x}\\|_1$."
     },
     {
       "type": "multiple",
-      "question": "Một hàm d là **metric** khi thỏa những tính chất nào?",
+      "question": "Một hàm $d$ là **metric** khi thỏa những tính chất nào?",
       "options": [
-        "Xác định dương: d(x, y) ≥ 0, và d(x, y) = 0 ⟺ x = y",
-        "Đối xứng: d(x, y) = d(y, x)",
-        "Bất đẳng thức tam giác: d(x, z) ≤ d(x, y) + d(y, z)",
-        "Tuyệt đối thuần nhất: d(λx, λy) = |λ|·d(x, y)"
+        "Xác định dương: $d(\\mathbf{x}, \\mathbf{y}) \\geq 0$, và $d(\\mathbf{x}, \\mathbf{y}) = 0 \\iff \\mathbf{x} = \\mathbf{y}$",
+        "Đối xứng: $d(\\mathbf{x}, \\mathbf{y}) = d(\\mathbf{y}, \\mathbf{x})$",
+        "Bất đẳng thức tam giác: $d(\\mathbf{x}, \\mathbf{z}) \\leq d(\\mathbf{x}, \\mathbf{y}) + d(\\mathbf{y}, \\mathbf{z})$",
+        "Tuyệt đối thuần nhất: $d(\\lambda\\mathbf{x}, \\lambda\\mathbf{y}) = |\\lambda| \\cdot d(\\mathbf{x}, \\mathbf{y})$"
       ],
       "answer": [0, 1, 2],
       "explanation": "Metric chỉ cần 3 tiên đề đầu. Tính thuần nhất là tiên đề của **chuẩn**: khoảng cách sinh từ chuẩn có thêm tính chất này, nhưng metric nói chung thì không (vd metric rời rạc)."
     },
     {
       "type": "true-false",
-      "question": "Mọi metric đều sinh ra từ một chuẩn theo công thức d(x, y) = ‖x − y‖.",
+      "question": "Mọi metric đều sinh ra từ một chuẩn theo công thức $d(\\mathbf{x}, \\mathbf{y}) = \\|\\mathbf{x} - \\mathbf{y}\\|$.",
       "answer": false,
       "explanation": "Chiều ngược lại mới đúng: chuẩn sinh ra metric. Metric rời rạc (0 nếu bằng nhau, 1 nếu khác) thỏa đủ 3 tiên đề nhưng không co giãn theo vector nên không sinh từ chuẩn nào."
     },
     {
       "type": "true-false",
-      "question": "d(x, y) = (x − y)² trên ℝ là một metric.",
+      "question": "$d(x, y) = (x - y)^2$ trên $\\mathbb{R}$ là một metric.",
       "answer": false,
-      "explanation": "Vi phạm bất đẳng thức tam giác: d(0, 2) = 4 > d(0, 1) + d(1, 2) = 2. Bình phương khoảng cách chỉ dùng được để xếp hạng, không phải metric."
+      "explanation": "Vi phạm bất đẳng thức tam giác: $d(0, 2) = 4 > d(0, 1) + d(1, 2) = 2$. Bình phương khoảng cách chỉ dùng được để xếp hạng, không phải metric."
     },
     {
       "type": "single",
-      "question": "Với tích trong ⟨x, y⟩ = xᵀAy, A = diag(2, 1), khoảng cách giữa x = (2, 3) và y = (1, 1) là:",
+      "question": "Với tích trong $\\langle \\mathbf{x}, \\mathbf{y} \\rangle = \\mathbf{x}^{\\mathsf{T}}\\mathbf{A}\\mathbf{y}$, $\\mathbf{A} = \\mathrm{diag}(2, 1)$, khoảng cách giữa $\\mathbf{x} = (2, 3)$ và $\\mathbf{y} = (1, 1)$ là:",
       "options": [
-        "√5",
-        "√6",
-        "6",
-        "3"
+        "$\\sqrt{5}$",
+        "$\\sqrt{6}$",
+        "$6$",
+        "$3$"
       ],
       "answer": 1,
-      "explanation": "u = x − y = (1, 2), d² = 2·1² + 1·2² = 6 nên d = √6. √5 là khoảng cách Euclid (quên A), 6 là quên lấy căn."
+      "explanation": "$\\mathbf{u} = \\mathbf{x} - \\mathbf{y} = (1, 2)$, $d^2 = 2 \\cdot 1^2 + 1 \\cdot 2^2 = 6$ nên $d = \\sqrt{6}$. $\\sqrt{5}$ là khoảng cách Euclid (quên $\\mathbf{A}$), $6$ là quên lấy căn."
     },
     {
       "type": "single",
-      "question": "Lý do hình học khiến phạt L1 sinh nghiệm **thưa** là gì?",
+      "question": "Lý do hình học khiến phạt $L_1$ sinh nghiệm **thưa** là gì?",
       "options": [
-        "Unit ball của L1 có đỉnh nhọn nằm trên các trục tọa độ",
-        "L1 khả vi tại mọi điểm nên gradient descent hội tụ về 0",
-        "L1 luôn nhỏ hơn L2 nên phạt nhẹ hơn",
-        "Unit ball của L1 là hình tròn nên đối xứng mọi hướng"
+        "Unit ball của $L_1$ có đỉnh nhọn nằm trên các trục tọa độ",
+        "$L_1$ khả vi tại mọi điểm nên gradient descent hội tụ về 0",
+        "$L_1$ luôn nhỏ hơn $L_2$ nên phạt nhẹ hơn",
+        "Unit ball của $L_1$ là hình tròn nên đối xứng mọi hướng"
       ],
       "answer": 0,
-      "explanation": "Đường mức của hàm mất mát dễ chạm hình thoi L1 tại đỉnh, nơi có tọa độ bằng 0. L1 **không** khả vi tại 0, và thực tế ‖x‖₁ ≥ ‖x‖₂; hình tròn là unit ball của L2."
+      "explanation": "Đường mức của hàm mất mát dễ chạm hình thoi $L_1$ tại đỉnh, nơi có tọa độ bằng 0. $L_1$ **không** khả vi tại 0, và thực tế $\\|\\mathbf{x}\\|_1 \\geq \\|\\mathbf{x}\\|_2$; hình tròn là unit ball của $L_2$."
     },
     {
       "type": "single",
-      "question": "Độ phức tạp của nearest neighbor classifier (cài bằng NumPy ở trên) với N ảnh train, mỗi ảnh D chiều là:",
+      "question": "Độ phức tạp của nearest neighbor classifier (cài bằng NumPy ở trên) với $N$ ảnh train, mỗi ảnh $D$ chiều là:",
       "options": [
-        "`train()` O(N·D), `predict()` O(1) mỗi ảnh test",
-        "`train()` O(1), `predict()` O(N·D) mỗi ảnh test",
-        "`train()` O(N²), `predict()` O(N) mỗi ảnh test",
-        "Cả hai đều O(N·D)"
+        "`train()` $O(N \\cdot D)$, `predict()` $O(1)$ mỗi ảnh test",
+        "`train()` $O(1)$, `predict()` $O(N \\cdot D)$ mỗi ảnh test",
+        "`train()` $O(N^2)$, `predict()` $O(N)$ mỗi ảnh test",
+        "Cả hai đều $O(N \\cdot D)$"
       ],
       "answer": 1,
-      "explanation": "`train()` chỉ ghi nhớ dữ liệu, còn `predict()` phải đo khoảng cách tới cả N ảnh train, mỗi lần tốn O(D). Phương án đầu là đặc điểm của mô hình parametric, ngược với k-NN."
+      "explanation": "`train()` chỉ ghi nhớ dữ liệu, còn `predict()` phải đo khoảng cách tới cả $N$ ảnh train, mỗi lần tốn $O(D)$. Phương án đầu là đặc điểm của mô hình parametric, ngược với k-NN."
     },
     {
       "type": "single",
-      "question": "Nên chọn hyperparameter k của k-NN dựa trên tập dữ liệu nào?",
+      "question": "Nên chọn hyperparameter $k$ của k-NN dựa trên tập dữ liệu nào?",
       "options": [
         "Training set",
         "Test set",
@@ -640,36 +640,36 @@ knn_idx = np.argsort(d2, axis=1)[:, :k]   # k láng giềng gần nhất của m
         "Gộp train và test để có nhiều dữ liệu hơn"
       ],
       "answer": 2,
-      "explanation": "Trên training set, k = 1 luôn đạt 100% nên vô nghĩa. Chọn trên test set làm kết quả đánh giá lạc quan giả tạo. Validation set (hoặc cross-validation) là cách đúng."
+      "explanation": "Trên training set, $k = 1$ luôn đạt 100% nên vô nghĩa. Chọn trên test set làm kết quả đánh giá lạc quan giả tạo. Validation set (hoặc cross-validation) là cách đúng."
     },
     {
       "type": "single",
-      "question": "Trong dictionary learning, vì sao phải ràng buộc ‖wₖ‖₂ = 1 cho mọi atom?",
+      "question": "Trong dictionary learning, vì sao phải ràng buộc $\\|\\mathbf{w}_k\\|_2 = 1$ cho mọi atom?",
       "options": [
         "Để các atom trực giao với nhau như PCA",
-        "Để bài toán trở thành lồi theo cả W và Z",
-        "Để chặn lỗ hổng tỉ lệ: phóng to atom, thu nhỏ hệ số làm phạt L1 giảm mà sai số không đổi",
-        "Để bảo đảm số atom K ≤ D"
+        "Để bài toán trở thành lồi theo cả $\\mathbf{W}$ và $\\mathbf{Z}$",
+        "Để chặn lỗ hổng tỉ lệ: phóng to atom, thu nhỏ hệ số làm phạt $L_1$ giảm mà sai số không đổi",
+        "Để bảo đảm số atom $K \\leq D$"
       ],
       "answer": 2,
-      "explanation": "Thay wₖ → c·wₖ và zₖ → zₖ / c thì Wz không đổi nhưng ‖z‖₁ giảm về 0 khi c → ∞. Chuẩn hóa không làm atom trực giao, không làm bài toán lồi đồng thời, và dictionary learning còn cho phép K > D."
+      "explanation": "Thay $\\mathbf{w}_k \\to c\\,\\mathbf{w}_k$ và $z_k \\to z_k / c$ thì $\\mathbf{W}\\mathbf{z}$ không đổi nhưng $\\|\\mathbf{z}\\|_1$ giảm về 0 khi $c \\to \\infty$. Chuẩn hóa không làm atom trực giao, không làm bài toán lồi đồng thời, và dictionary learning còn cho phép $K > D$."
     },
     {
       "type": "single",
-      "question": "K-means là trường hợp đặc biệt của khung x ≈ Wz khi mã zₙ bị ép:",
+      "question": "K-means là trường hợp đặc biệt của khung $\\mathbf{x} \\approx \\mathbf{W}\\mathbf{z}$ khi mã $\\mathbf{z}_n$ bị ép:",
       "options": [
         "Có các cột trực chuẩn",
         "Là vector one-hot (đúng một phần tử bằng 1)",
         "Dày, không có ràng buộc",
-        "Có chuẩn L2 bằng 1"
+        "Có chuẩn $L_2$ bằng 1"
       ],
       "answer": 1,
-      "explanation": "Mỗi điểm được xấp xỉ bằng đúng một centroid, nên zₙ là one-hot. Trực chuẩn là ràng buộc trên W của PCA; mã dày cũng là đặc điểm của PCA."
+      "explanation": "Mỗi điểm được xấp xỉ bằng đúng một centroid, nên $\\mathbf{z}_n$ là one-hot. Trực chuẩn là ràng buộc trên $\\mathbf{W}$ của PCA; mã dày cũng là đặc điểm của PCA."
     },
     {
       "type": "self-check",
-      "question": "Chuẩn hóa x = (2, 1) theo chuẩn L1. Kết quả khác gì so với chuẩn hóa theo L2?",
-      "answer": "‖x‖₁ = 3 nên u = (2/3, 1/3): tổng các thành phần bằng 1 (giống phân phối xác suất). Theo L2 được (2/√5, 1/√5): tổng bình phương bằng 1. Cùng hướng, khác độ dài."
+      "question": "Chuẩn hóa $\\mathbf{x} = (2, 1)$ theo chuẩn $L_1$. Kết quả khác gì so với chuẩn hóa theo $L_2$?",
+      "answer": "$\\|\\mathbf{x}\\|_1 = 3$ nên $\\mathbf{u} = (2/3, 1/3)$: tổng các thành phần bằng 1 (giống phân phối xác suất). Theo $L_2$ được $(2/\\sqrt{5}, 1/\\sqrt{5})$: tổng bình phương bằng 1. Cùng hướng, khác độ dài."
     }
   ]
 }
